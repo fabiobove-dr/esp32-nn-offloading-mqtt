@@ -1,6 +1,5 @@
 # Other files
-esp32-nn-offloading-mqtt\esp32_board\nn_runner\src\conf.h
-
+*conf.h
 # Prerequisites
 *.d
 
