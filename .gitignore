@@ -1,5 +1,5 @@
 # Other files
-conf.h
+esp32_board/nn_runner/src/conf.h
 
 # Prerequisites
 *.d
