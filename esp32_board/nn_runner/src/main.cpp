@@ -266,11 +266,6 @@ void generateMessageUUID(){
 * ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 void registerDevice(){
-  // Set the topics
-  end_computation_topic = DeviceUUID + "/end_computation";
-  model_data_topic = DeviceUUID + "/model_data";
-  model_inference_topic = DeviceUUID + "/model_inference";
-  model_inference_result_topic = DeviceUUID + "/model_inference_result";
   // Generate the JSON message
   jsonDoc["timestamp"] = getCurrTimeStr();
   jsonDoc["message_id"] = MessageUUID;
@@ -352,6 +347,12 @@ void processIncomingMessage(char* topic, byte* payload, unsigned int length) {
 }
 
 void dispatchCallbackMessages() {
+  // Set the topics
+  end_computation_topic = DeviceUUID + "/end_computation";
+  model_data_topic = DeviceUUID + "/model_data";
+  model_inference_topic = DeviceUUID + "/model_inference";
+  model_inference_result_topic = DeviceUUID + "/model_inference_result";
+
   // Subscribe to the topic
   client.subscribe(model_data_topic.c_str());
   client.subscribe(model_inference_topic.c_str());
@@ -374,8 +375,8 @@ void setup() {
   mqttConfiguration();          // MQTT
   timeConfiguration();          // Synchronize Timer - NTP server
   generateMessageUUID();        // Generate an Identifier for the message
-  registerDevice();             // Register the device on the edge
   dispatchCallbackMessages();   // Set the callback function for the MQTT messages
+  registerDevice();             // Register the device on the edge
 }
 
 /* 
